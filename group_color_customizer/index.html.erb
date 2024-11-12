@@ -1,0 +1,33 @@
+<!-- templates/admin/group_color_customizer/index.html.erb -->
+
+<h2><%= I18n.t('group_color_customizer.title') %></h2>
+
+<form action="/admin/group-color-customizer" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= I18n.t('group_color_customizer.group') %></th>
+        <th><%= I18n.t('group_color_customizer.color') %></th>
+        <th><%= I18n.t('group_color_customizer.rank') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @groups.each do |group| %>
+        <% group_color = @group_colors.find { |name, data| name == group.name } || { color: "#000000", rank: 1 } %>
+        <tr>
+          <td><%= group.name %></td>
+          <td>
+            <input type="color" name="group_colors[<%= group.id %>][color]" value="<%= group_color[:color] || "#000000" %>">
+          </td>
+          <td>
+            <input type="number" name="group_colors[<%= group.id %>][rank]" value="<%= group_color[:rank] || 1 %>" min="1">
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <button type="submit" class="btn btn-primary"><%= I18n.t('group_color_customizer.save') %></button>
+</form>
