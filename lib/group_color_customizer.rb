@@ -4,7 +4,7 @@
 # about: Customizes user group colors and displays group information in user cards
 # version: 0.1.0
 # authors: Abaddon
-# url: https://github.com/yabaddon1979/discourse-group-color-customizer
+# url: https://github.com/Abaddon1979/discourse-group-color-customizer
 
 enabled_site_setting :group_color_customizer_enabled
 
