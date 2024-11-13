@@ -1,7 +1,6 @@
 // assets/javascripts/group-color-customizer/index.js
 
 import { withPluginApi } from "discourse/lib/plugin-api";
-import { htmlSafe } from "@ember/template";
 
 export default {
   name: "group-color-customizer",
@@ -56,13 +55,14 @@ export default {
         threshold: 0.1
       });
 
-      // Observe username elements in chat
+      // Observe username elements in chat, forums, and user cards
       api.onPageChange(() => {
+        // Chat usernames
         document.querySelectorAll(".chat-message-info__username").forEach((el) => {
           // Prepare user data
           let userName = el.querySelector(".chat-message-info__username__name").textContent.trim();
           let user = Site.currentSiteSettings.group_color_customizer_settings[userName] || null;
-          
+
           // Store user data in dataset for access in observer
           el.dataset.user = JSON.stringify(user || {});
 
@@ -70,24 +70,24 @@ export default {
           observer.observe(el);
         });
 
-        // Observe username elements in forums
+        // Forum usernames
         document.querySelectorAll(".username a").forEach((el) => {
           let userName = el.textContent.trim();
           let user = Site.currentSiteSettings.group_color_customizer_settings[userName] || null;
-          
-          // Store user data in dataset
+
+          // Store user data in dataset for access in observer
           el.dataset.user = JSON.stringify(user || {});
 
           // Observe the element
           observer.observe(el);
         });
 
-        // Observe username elements in user cards
+        // User card usernames
         document.querySelectorAll(".user-profile-link .name-username-wrapper").forEach((el) => {
           let userName = el.textContent.trim();
           let user = Site.currentSiteSettings.group_color_customizer_settings[userName] || null;
-          
-          // Store user data in dataset
+
+          // Store user data in dataset for access in observer
           el.dataset.user = JSON.stringify(user || {});
 
           // Observe the element
@@ -109,3 +109,4 @@ export default {
       });
     });
   }
+};

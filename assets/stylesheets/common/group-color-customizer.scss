@@ -1,0 +1,35 @@
+/* assets/stylesheets/common/group-color-customizer.scss */
+
+.user-groups {
+    display: inline-flex;
+    margin-left: 8px;
+  
+    .user-group {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #ffffff;
+      font-size: 0.8em;
+      margin-right: 4px;
+      transition: background-color 0.3s ease;
+    }
+  }
+  
+  .chat-message-info__username {
+    position: relative;
+  
+    &:hover .user-card {
+      opacity: 1;
+      transition: opacity 0.3s ease-in-out;
+    }
+  
+    .user-card {
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+  }
+  
+  .user-profile-link .name-username-wrapper {
+    /* Color is applied inline via JavaScript */
+  }
+  

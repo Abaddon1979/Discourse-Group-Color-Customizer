@@ -1,0 +1,8 @@
+{
+    "name": "discourse-group-color-customizer",
+    "version": "0.1.0",
+    "description": "Discourse plugin to customize user group colors and display group information.",
+    "main": "assets/javascripts/group-color-customizer/index.js",
+    "license": "MIT",
+    "dependencies": {}
+  }

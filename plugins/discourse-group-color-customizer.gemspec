@@ -1,5 +1,3 @@
-# plugins/discourse-group-color-customizer.gemspec
-
 Gem::Specification.new do |spec|
   spec.name          = "discourse-group-color-customizer"
   spec.version       = "0.1.0"

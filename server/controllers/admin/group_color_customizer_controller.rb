@@ -23,3 +23,5 @@ module DiscourseGroupColorCustomizer
     end
   end
 end
+
+

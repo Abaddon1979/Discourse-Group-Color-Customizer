@@ -3,7 +3,7 @@
 # name: create-group-colors
 # about: Adds group_colors table
 # authors: Abaddon
-# date: 2024-04-27
+# date: 2025-11-15
 
 class CreateGroupColors < ActiveRecord::Migration[6.0]
   def change
