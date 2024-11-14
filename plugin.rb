@@ -9,18 +9,14 @@
 
 enabled_site_setting :group_color_customizer_enabled
 
+# Load the plugin's engine for routing and other configurations
+load File.expand_path('lib/group_color_customizer/engine.rb', __dir__)
+
+# Add the plugin's model and controller paths using Discourse plugin API methods
+add_model_path File.expand_path('app/models', __dir__)
+add_controller_path File.expand_path('app/controllers', __dir__)
+
 after_initialize do
-  # Ensure the plugin's models, controllers, and other files are autoloaded
-  # Rails and Discourse automatically load files under app/models and app/controllers
-  
-  # Add the plugin's app/models and app/controllers directories to the autoload paths if necessary
-  # This helps Rails and Discourse find your plugin's classes
-  Rails.configuration.autoload_paths << File.expand_path('app/models', __dir__) unless Rails.configuration.autoload_paths.include?(File.expand_path('app/models', __dir__))
-  Rails.configuration.autoload_paths << File.expand_path('app/controllers', __dir__) unless Rails.configuration.autoload_paths.include?(File.expand_path('app/controllers', __dir__))
-
-  # Load the plugin's engine for routing and other configurations
-  load File.expand_path('lib/group_color_customizer/engine.rb', __dir__)
-
   # Plugin initialization code can be added here if needed
   # For example, you can define plugin-specific settings or behavior
 
