@@ -1,6 +1,6 @@
 # db/migrate/20241114034500_create_group_colors.rb
 
-class CreateGroupColors
+class CreateGroupColors < ActiveRecord::Migration[6.0]
   def change
     create_table :group_colors do |t|
       t.integer :group_id, null: false
