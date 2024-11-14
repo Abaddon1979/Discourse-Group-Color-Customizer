@@ -11,9 +11,6 @@ enabled_site_setting :group_color_customizer_enabled
 # Register assets
 register_asset "stylesheets/group-color-customizer.scss"
 
-# Specify the migration path
-add_migration_path "db/migrate"
-
 # Load the engine
 load File.expand_path('lib/group_color_customizer/engine.rb', __dir__)
 
