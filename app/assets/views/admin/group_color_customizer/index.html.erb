@@ -1,5 +1,6 @@
 <!-- app/views/admin/group_color_customizer/index.html.erb -->
 <h2><%= I18n.t('group_color_customizer.title') %></h2>
+
 <%= form_with url: admin_group_color_customizer_path, method: :post do %>
   <table class="table">
     <thead>
@@ -11,18 +12,19 @@
     </thead>
     <tbody>
       <% @groups.each do |group| %>
-        <% group_color = @group_colors[group.name] || { color: "#000000", rank: 1 } %>
+        <% group_color = @group_colors[group.id] || GroupColor.new %>
         <tr>
           <td><%= group.name %></td>
           <td>
-            <%= color_field_tag "group_colors[#{group.id}][color]", group_color[:color], class: "color-picker" %>
+            <%= color_field_tag "group_colors[#{group.id}][color]", group_color.color, class: "color-picker" %>
           </td>
           <td>
-            <%= number_field_tag "group_colors[#{group.id}][rank]", group_color[:rank], min: 1 %>
+            <%= number_field_tag "group_colors[#{group.id}][rank]", group_color.rank, min: 1 %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
+
   <%= submit_tag I18n.t('group_color_customizer.save'), class: "btn btn-primary" %>
 <% end %>
