@@ -8,22 +8,33 @@
 
 enabled_site_setting :group_color_customizer_enabled
 
+# Ensure the cache module is loaded
 after_initialize do
-  # Add to user serializer
+  require File.expand_path('../lib/group_color_customizer/cache.rb', __FILE__)
+
+  # Add color data to user serializer
   add_to_serializer(:user, :group_colors) do
-    GroupColor.cached_group_colors
-      .select { |group_name, _| object.groups.map(&:name).include?(group_name) }
-      .map { |name, data| { name: name, color: data[:color], rank: data[:rank] } }
+    begin
+      group_colors = GroupColor.cached_group_colors
+      object.groups.map do |group|
+        name = group.name
+        data = group_colors[group.id] # Ensuring we're fetching by Group ID
+        next unless data
+
+        { name: data[:name], color: data[:color], rank: data[:rank] }
+      end.compact
+    rescue => e
+      Rails.logger.error("Error serializing group_colors: #{e.message}")
+      []
+    end
   end
 
-  # Callback to create a corresponding GroupColor entry for each new group
+  # Hook to ensure new groups get a default color
   Group.class_eval do
-    after_create :ensure_group_color_presence
-
-    def ensure_group_color_presence
+    after_create do
       GroupColor.where(group_id: self.id).first_or_create!(
-        color: "#000000",  # Default color
-        rank: 1            # Default rank
+        color: "#000000", # Default color
+        rank: 1           # Default rank
       )
     end
   end
