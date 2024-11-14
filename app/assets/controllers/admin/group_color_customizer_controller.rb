@@ -1,5 +1,5 @@
 # app\assets\controllers\admin\group_color_customizer_controller.rb
-
+ 
 module ::Admin
   class GroupColorCustomizerController < Admin::AdminController
     requires_plugin 'discourse-group-color-customizer'
@@ -7,7 +7,6 @@ module ::Admin
     def index
       @groups = Group.all.order(:name)
       @group_colors = GroupColor.all.index_by(&:group_id)
-      # Ensure variables are correctly set here, serving the view
     end
 
     def update
@@ -18,6 +17,7 @@ module ::Admin
         group_color.rank = attributes[:rank].to_i
         group_color.save!
       end
+
       flash[:success] = I18n.t('group_color_customizer.save')
       redirect_to admin_group_color_customizer_path
     end
