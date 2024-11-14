@@ -1,8 +1,13 @@
 # config/settings.yml
 
-group_color_customizer:
+plugins:
   group_color_customizer_enabled:
-    default: false
-    client: false
+    default: true
+    client: true
     type: bool
     description: "Enable the Group Color Customizer plugin"
+  group_color_settings:
+    client: true
+    type: text
+    default: "{}"
+    description: "JSON object mapping group IDs to colors."

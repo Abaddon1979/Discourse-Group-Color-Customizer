@@ -1,0 +1,12 @@
+# config/locales/en.yml
+
+en:
+  site_settings:
+    group_color_customizer_enabled: "Enable the Group Color Customizer"
+    group_color_settings: "Group Color Mappings"
+  group_color_customizer:
+    title: "Group Color Customizer"
+    group: "Group"
+    color: "Color"
+    rank: "Rank"
+    save: "Save Changes"
