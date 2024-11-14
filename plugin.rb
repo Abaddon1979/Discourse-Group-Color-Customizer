@@ -9,7 +9,7 @@
 enabled_site_setting :group_color_customizer_enabled
 
 # Register assets
-register_asset "javascripts/group-color-customizer.js"
+register_asset "stylesheets/group-color-customizer.scss"
 
 # Specify the migration path
 add_migration_path "db/migrate"
