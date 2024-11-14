@@ -7,7 +7,7 @@ module GroupColorCustomizer
 
     initializer 'group_color_customizer.append_routes' do
       Discourse::Application.routes.append do
-        mount ::GroupColorCustomizer::Engine, at: "/admin/plugins/group-color-customizer",
+        mount ::GroupColorCustomizer::Engine, at: "/app/assets/views/admin/group_color_customizer",
                                               constraints: AdminConstraint.new
       end
     end
