@@ -1,6 +1,6 @@
 # plugin.rb
 
-# name: discourse-group-color-customizer
+# name: Discourse-Group-Color-Customizer
 # about: Customizes user group colors and displays group information in user cards
 # version: 0.1.0
 # authors: Abaddon
