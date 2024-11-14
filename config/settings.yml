@@ -1,7 +1,8 @@
 # config/settings.yml
 
-group_color_customizer_enabled:
-  default: false
-  client: false
-  type: bool
-  description: "Enable the Group Color Customizer plugin"
+group_color_customizer:
+  group_color_customizer_enabled:
+    default: false
+    client: false
+    type: bool
+    description: "Enable the Group Color Customizer plugin"
