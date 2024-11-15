@@ -6,8 +6,3 @@ plugins:
     client: true
     type: bool
     description: "Enable the Group Color Customizer plugin"
-  group_color_settings:
-    client: true
-    type: text
-    default: "{}"
-    description: "JSON object mapping group IDs to colors."
