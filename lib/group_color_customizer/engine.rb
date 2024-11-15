@@ -2,7 +2,7 @@
 
 module GroupColorCustomizer
   class Engine < ::Rails::Engine
-    engine_name PLUGIN_NAME
+    engine_name GroupColorCustomizer::PLUGIN_NAME
     isolate_namespace GroupColorCustomizer
 
     config.after_initialize do

@@ -8,9 +8,10 @@
 
 enabled_site_setting :group_color_customizer_enabled
 
-PLUGIN_NAME ||= "discourse-group-color-customizer".freeze
+module ::GroupColorCustomizer
+  PLUGIN_NAME = "discourse-group-color-customizer".freeze
+end
 
-# Load dependencies
 load File.expand_path('../lib/group_color_customizer/engine.rb', __FILE__)
 
 after_initialize do
@@ -39,9 +40,6 @@ after_initialize do
 
     CreateGroupColors.new.up
   end
-
-  # Add plugin to admin menu
-  add_admin_route 'group_color_customizer.title', 'group-color-customizer'
 
   # Add to admin menu
   Discourse::Application.routes.append do
