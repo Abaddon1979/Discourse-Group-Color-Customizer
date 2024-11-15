@@ -41,10 +41,14 @@ after_initialize do
     CreateGroupColors.new.up
   end
 
+  # Register the plugin
+  add_admin_route 'group_color_customizer.title', 'group-color-customizer'
+
   # Add to admin menu
   Discourse::Application.routes.append do
     namespace :admin, constraints: StaffConstraint.new do
-      mount ::GroupColorCustomizer::Engine, at: '/group-color-customizer'
+      get 'group-color-customizer' => 'admin/group_color_customizer#index'
+      post 'group-color-customizer' => 'admin/group_color_customizer#update'
     end
   end
 end
