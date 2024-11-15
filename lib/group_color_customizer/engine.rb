@@ -2,19 +2,13 @@
 
 module GroupColorCustomizer
   class Engine < ::Rails::Engine
-    engine_name 'group_color_customizer'
+    engine_name PLUGIN_NAME
     isolate_namespace GroupColorCustomizer
 
-    initializer 'group_color_customizer.append_routes' do
+    config.after_initialize do
       Discourse::Application.routes.append do
-        mount ::GroupColorCustomizer::Engine, at: "/admin/plugins/group-color-customizer",
-                                              constraints: AdminConstraint.new
+        mount ::GroupColorCustomizer::Engine, at: '/admin/plugins/group-color-customizer'
       end
-    end
-
-    routes.draw do
-      get '/' => 'admin/group_color_customizer#index', as: 'admin_group_color_customizer'
-      post '/' => 'admin/group_color_customizer#update'
     end
   end
 end

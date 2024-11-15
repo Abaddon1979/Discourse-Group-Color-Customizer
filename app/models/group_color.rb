@@ -2,21 +2,22 @@
 
 class GroupColor < ActiveRecord::Base
   belongs_to :group
-
-  validates :color, presence: true, format: { with: /\A#[0-9A-Fa-f]{6}\z/,
-                                              message: "must be a valid hex color code" }
+  
+  validates :color, presence: true
   validates :rank, presence: true, numericality: { only_integer: true, greater_than: 0 }
-
-  after_save :invalidate_cache
-  after_destroy :invalidate_cache
-
+  
+  after_save :clear_cache
+  after_destroy :clear_cache
+  
   def self.cached_group_colors
-    GroupColorCustomizer::Cache.fetch_group_colors
+    Discourse.cache.fetch("group_colors", expires_in: 1.hour) do
+      GroupColor.all.map { |gc| [gc.group_id, { name: gc.group.name, color: gc.color, rank: gc.rank }] }.to_h
+    end
   end
-
+  
   private
-
-  def invalidate_cache
-    GroupColorCustomizer::Cache.invalidate_group_colors
+  
+  def clear_cache
+    Discourse.cache.delete("group_colors")
   end
 end
